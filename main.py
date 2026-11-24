@@ -3,38 +3,42 @@
 import pygame
 
 from src import config
-from src.objects.ship import Ship
+from src.game import Game
 
 
 def make_placeholder_image(size, color):
-    """Создаёт однотонную заглушку вместо картинки."""
+    """Однотонная заглушка вместо картинки."""
     surf = pygame.Surface(size, pygame.SRCALPHA)
     surf.fill(color)
     return surf
 
 
+def load_assets():
+    """Загружает картинки (пока заглушки)."""
+    ship = make_placeholder_image((40, 50), config.COLOR_SHIP)
+    ship_thrust = make_placeholder_image((40, 50), (255, 160, 60))
+    asteroid = make_placeholder_image((80, 80), config.COLOR_ASTEROID)
+    bg_static = pygame.Surface((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
+    bg_static.fill(config.COLOR_BG)
+    bg_dynamic = make_placeholder_image(
+        (config.SCREEN_WIDTH, config.SCREEN_HEIGHT), (60, 60, 120)
+    )
+    explosion = [make_placeholder_image((60, 60), (255, 200 - i * 40, 0))
+                 for i in range(5)]
+    return {
+        "ship": ship, "ship_thrust": ship_thrust, "asteroid": asteroid,
+        "bg_static": bg_static, "bg_dynamic": bg_dynamic,
+        "explosion": explosion,
+    }
+
+
 def main():
-    """Инициализирует pygame и рисует корабль в центре."""
+    """Инициализирует pygame и запускает игру."""
     pygame.init()
     screen = pygame.display.set_mode((config.SCREEN_WIDTH,
                                       config.SCREEN_HEIGHT))
     pygame.display.set_caption("Asteroids")
-
-    ship_img = make_placeholder_image((40, 50), config.COLOR_SHIP)
-    ship_thrust_img = make_placeholder_image((40, 50), (255, 160, 60))
-    ship = Ship(ship_img, ship_thrust_img)
-
-    running = True
-    clock = pygame.time.Clock()
-    while running:
-        clock.tick(config.FPS)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        screen.fill(config.COLOR_BG)
-        ship.draw(screen)
-        pygame.display.flip()
-
+    Game(screen, load_assets()).run()
     pygame.quit()
 
 
