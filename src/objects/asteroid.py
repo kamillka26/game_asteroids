@@ -16,7 +16,8 @@ class Asteroid(GameObject):
         """Создаёт астероид."""
         super().__init__(x, y, image)
         if radius:
-            self.image = pygame.transform.scale(image, (radius * 2, radius * 2))
+            self.image = pygame.transform.scale(image, (radius * 2,
+                                                        radius * 2))
         speed = random.uniform(config.ASTEROID_MIN_SPEED,
                                config.ASTEROID_MAX_SPEED)
         direction = random.uniform(0, 360)

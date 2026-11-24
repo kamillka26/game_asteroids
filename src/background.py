@@ -1,7 +1,5 @@
 """Статичный и динамический фон."""
 
-import pygame
-
 from src import config
 
 
@@ -17,7 +15,7 @@ class Background:
 
     def update(self, dt_ms):
         """Прокручивает динамический слой влево."""
-        self.offset_x = (self.offset_x 
+        self.offset_x = (self.offset_x
                          - config.BG_SCROLL_SPEED) % config.SCREEN_WIDTH
 
     def draw(self, surface):
