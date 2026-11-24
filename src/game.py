@@ -46,7 +46,7 @@ class Game:
         """Начинает новую игру: сброс счётчиков и объектов."""
         self.lives = config.START_LIVES
         self.score = config.START_SCORE
-        self.ship = Ship(self.assets["ship"], self.assets["ship_thrust"])
+        self.ship = Ship(self.assets["ship"], self.assets["flame"])
         self.asteroids.clear()
         self.bullets.clear()
         self.explosions.clear()

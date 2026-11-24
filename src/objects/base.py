@@ -31,7 +31,7 @@ class GameObject:
     def get_rotated(self):
         """Возвращает повёрнутое изображение и его прямоугольник."""
         import pygame
-        rotated = pygame.transform.rotate(self.image, self.angle)
+        rotated = pygame.transform.rotate(self.image, self.angle - 90)
         rect = rotated.get_rect(center=(self.x, self.y))
         return rotated, rect
 

@@ -19,7 +19,7 @@ SHIP_COOLDOWN = 250            # мс между выстрелами
 
 # Ракеты
 BULLET_SPEED = 7.0
-BULLET_LIFETIME = int((SCREEN_HEIGHT / BULLET_SPEED) * 0.8)  # кадров
+BULLET_LIFETIME = int((SCREEN_HEIGHT / BULLET_SPEED) * 0.4)  # кадров
 
 # Астероиды
 ASTEROID_MIN_SPEED = 0.5
@@ -47,3 +47,7 @@ COLOR_SHIP = (230, 230, 230)
 COLOR_ASTEROID = (150, 150, 150)
 COLOR_BULLET = (255, 220, 80)
 COLOR_TEXT = (220, 255, 180)
+
+# Размеры спрайтов после масштабирования
+SHIP_SPRITE_SIZE = (40, 50)       # корабль
+ASTEROID_SPRITE_SIZE = (80, 80)   # базовый астероид
