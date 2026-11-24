@@ -27,3 +27,15 @@ class GameObject:
     def radius(self):
         """Радиус описанной окружности для столкновений."""
         return max(self.image.get_width(), self.image.get_height()) / 2
+
+    def get_rotated(self):
+        """Возвращает повёрнутое изображение и его прямоугольник."""
+        import pygame
+        rotated = pygame.transform.rotate(self.image, self.angle)
+        rect = rotated.get_rect(center=(self.x, self.y))
+        return rotated, rect
+
+    def draw(self, surface):
+        """Рисует объект на поверхности."""
+        rotated, rect = self.get_rotated()
+        surface.blit(rotated, rect)

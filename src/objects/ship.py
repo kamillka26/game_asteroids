@@ -64,3 +64,8 @@ class Ship(GameObject):
         nose_y = self.y + dy * self.radius()
         self.cooldown_ms = config.SHIP_COOLDOWN
         return Bullet(nose_x, nose_y, self.angle)
+
+    def draw(self, surface):
+        """Рисует корабль (с двигателем или без)."""
+        self.image = self.image_thrust if self.thrusting else self.image_idle
+        super().draw(surface)

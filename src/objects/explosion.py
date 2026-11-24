@@ -25,3 +25,10 @@ class Explosion:
     def finished(self):
         """Анимация завершена."""
         return self.frame_index >= len(self.frames)
+
+    def draw(self, surface):
+        """Рисует текущий кадр взрыва."""
+        if not self.finished:
+            frame = self.frames[self.frame_index]
+            rect = frame.get_rect(center=(self.x, self.y))
+            surface.blit(frame, rect)
